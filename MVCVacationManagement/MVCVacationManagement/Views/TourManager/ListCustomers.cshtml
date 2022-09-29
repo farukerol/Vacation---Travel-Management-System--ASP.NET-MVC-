@@ -1,0 +1,63 @@
+﻿@using MVCVacationManagement.Models.Entity
+
+@model List<TBLTURREZERVASYON>
+@{
+    ViewBag.Title = "ListCustomers";
+    Layout = "~/Views/Shared/_TourManagerLayout.cshtml";
+}
+
+<html>
+<head>
+    <title>Müşteriler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <h2>Sorumlu Olunan Müşteriler</h2>
+    @using (Html.BeginForm("ListCustomers", "TourManager", FormMethod.Get))
+    {
+        <div style="margin-bottom:15px; margin-top:15px;">
+            <b style="color:black">Tur İsmini Giriniz:</b>@Html.TextBox("tourName", null, new { style = "color:black" })
+            <input style="color:black" type="submit" value="Ara" />
+        </div>
+    }
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tur Adı</th>
+                <th>Kalkış Yeri</th>
+                <th>Süre</th>
+                <th>Ücret</th>
+                <th>Tarih</th>
+                <th>Müşteri Adı</th>
+                <th>Müşteri Soyadı</th>
+                <th>Müşteri Telefon Numarası</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TBLTUR.tur_basligi</td>
+                    <td>@item.TBLTUR.kalkis_yeri</td>
+                    <td>@item.TBLTUR.sure</td>
+                    <td>@item.TBLTUR.ucret</td>
+                    <td>@Convert.ToDateTime(item.TBLTUR.tarih).ToString("dd/MM/yyyy")</td>
+                    <td>@item.TBLMUSTERI1.ad</td>
+                    <td>@item.TBLMUSTERI1.soyad</td>
+                    <td>@item.TBLMUSTERI1.telefon_numarasi</td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+

@@ -1,0 +1,52 @@
+﻿@model MVCVacationManagement.Models.Entity.TBLTUR
+@{
+    ViewBag.Title = "TourTicket";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+
+<h2 style="color:darkred">Tur Bileti Onayla</h2>
+@using (Html.BeginForm("BuyTourTicket", "Tur", new { tourid = ViewBag.tourid, customerid=Session["customer_id"] }, FormMethod.Post))
+{
+    <table class="table table-hover" style="margin-top:30px">
+
+        <tr>
+            <td>
+                <label style="font-weight:bolder; color:darkblue"> Müşteri İsmi: </label> <label style="color:black"> @Session["customer_name"].ToString()</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="font-weight:bolder; color:darkblue"> Müşteri Soy İsmi: </label> <label style="color:black"> @Session["customer_surname"].ToString()</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="font-weight:bolder; color:darkblue"> Tur Adı: </label><label style="color:black"> @ViewBag.tourname</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="font-weight:bolder; color:darkblue"> Tarih: </label><label style="color:black">  @Convert.ToDateTime(ViewBag.tarih).ToString("dd/MM/yyyy")</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="font-weight:bolder; color:darkblue"> Detaylar: </label><label style="color:black"> @ViewBag.detaylar</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label style="font-weight:bolder; color:darkblue"> Tur Yetkilisi: </label><label style="color:black"> @ViewBag.turYetkilisi</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn btn-warning">Bileti Onayla</button>
+            </td>
+            
+
+        </tr>
+    </table>
+
+}

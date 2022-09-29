@@ -1,0 +1,70 @@
+﻿@using MVCVacationManagement.Models.Entity
+
+@model List<TBLHOTEL>
+@{
+    ViewBag.Title = "ListHotels";
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+<html>
+<head>
+    <title>Otel Listesi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <h2>Otel Listesi</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Otel Adı</th>
+                <th>Konumu</th>
+                <th>Fotoğrafı</th>
+                <th>2. Fotoğrafı</th>
+                <th>3. Fotoğrafı</th>
+                <th>Tek Kişilik Oda Sayısı</th>
+                <th>Tek Kişilik Oda Fiyatı</th>
+                <th>İki Kişilik Oda Sayısı</th>
+                <th>İki Kişilik Oda Fiyatı</th>
+                <th>Üç Kişilik Oda Sayısı</th>
+                <th>Üç Kişilik Oda Fiyatı</th>
+                <th>Dört Kişilik Oda Sayısı</th>
+                <th>Dört Kişilik Oda Fiyatı</th>
+                <th>Otel Yetkilisi</th>
+                <th>Sil</th>
+                <th>Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.isim</td>
+                <td>@item.konum</td>
+                <td><a href="#"><img src="@item.fotograf" alt="Örnek Resim" style="width:100px" /></a></td>
+                <td><a href="#"><img src="@item.fotograf2" alt="Örnek Resim" style="width:100px" /></a></td>
+                <td><a href="#"><img src="@item.fotograf3" alt="Örnek Resim" style="width:100px" /></a></td>
+                <td>@item.bir_kisilik_oda_sayisi</td>
+                <td>@item.bir_kisilik_oda_ucret</td>
+                <td>@item.iki_kisilik_oda_sayisi</td>
+                <td>@item.iki_kisilik_oda_ucret</td>
+                <td>@item.uc_kisilik_oda_sayisi</td>
+                <td>@item.uc_kisilik_oda_ucret</td>
+                <td>@item.dort_kisilik_oda_sayisi</td>
+                <td>@item.dort_kisilik_oda_ucret</td>
+                <td>@item.TBLHOTELYETKILISI.ad @item.TBLHOTELYETKILISI.soyad </td>
+                <td>@Html.ActionLink("Sil", "DeleteHotel", new { id = item.id }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor Musunuz?')" })</td>
+                <td><a href="/Admin/HotelInformations/@item.id" class="btn btn-success">Güncelle</a></td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+

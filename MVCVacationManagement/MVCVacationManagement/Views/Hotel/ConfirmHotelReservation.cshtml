@@ -1,0 +1,24 @@
+﻿@model MVCVacationManagement.Models.Entity.TBLHOTELREZERVASYON
+@{
+    ViewBag.Title = "ConfirmHotelReservation";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+@using (Html.BeginForm("ConfirmHotelReservation", "Hotel", new { hotelid = TempData["hotel_id"], customerid = Session["customer_id"] }, FormMethod.Post))
+{
+
+    <label style="color:black"> Başlangıç Tarihi</label>
+    @Html.TextBoxFor(x => x.baslangic, new { @class = "form-control", @required = "required" })
+    <br />
+
+    <label style="color:black"> Bitiş Tarihi</label>
+    @Html.TextBoxFor(x => x.bitis, new { @class = "form-control", @required = "required" })
+    <br />
+
+    <label style="color:black">Kişi Sayısı</label>
+    @Html.DropDownListFor(x => x.kisi_sayisi, (List<SelectListItem>)ViewBag.person, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-info">Onayla</button>
+}
+

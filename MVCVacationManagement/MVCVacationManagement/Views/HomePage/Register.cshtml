@@ -1,0 +1,31 @@
+﻿@model MVCVacationManagement.Models.Entity.TBLMUSTERI
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<form method="post">
+    <h2 style="color:black">Kayıt Ol</h2>
+    <br />
+    <label style="color:black">Adınız:</label>
+    @Html.TextBoxFor(x => x.ad, new { @class = "form-control", @required = "required" })
+    <br />
+
+    <label style="color:black">Soyadınız:</label>
+    @Html.TextBoxFor(x => x.soyad, new { @class = "form-control", @required = "required" })
+    <br />
+
+    <label style="color:black">Telefon Numarası:</label>
+    <br />
+    @Html.TextBoxFor(x => x.telefon_numarasi, new { @class = "form-control", @required = "required" })
+    <br />
+    <label style="color:black">Kullanıcı Adı:</label>
+    @Html.TextBoxFor(x => x.kullanici_adi, new { @class = "form-control", @required = "required" }) 
+    <br />
+    <br />
+    <label style="color:black">Şifre</label>
+    @Html.TextBoxFor(x => x.sifre, new { @class = "form-control", @required = "required" })
+    <br />
+    <button class="btn btn-success">Kayıt Ol</button>
+</form>
+

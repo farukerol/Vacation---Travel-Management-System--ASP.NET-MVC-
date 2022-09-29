@@ -1,0 +1,42 @@
+﻿@using MVCVacationManagement.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TBLHOTEL>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Hotel", FormMethod.Get))
+{
+    <div style="margin-bottom:15px; margin-top:15px;">
+        <b style="color:black">Otel veya Konum Aramanızı Yapınız:</b>@Html.TextBox("p", null, new { style = "color:black" })
+        <input style="color:black" type="submit" value="Ara" />
+    </div>
+}
+<div>
+
+    @foreach (var item in Model)
+    {
+        <article class="postcard light yellow" style="width:1200px; margin-left:160px; margin-right:0px">
+            <a class="postcard__img_link" href="#">
+                <img class="postcard__img" src="@item.fotograf" alt="Image Title" />
+            </a>
+            <div class="postcard__text t-dark">
+                <h1 class="postcard__title yellow" style="margin-left:15px" style="margin-right:20px"><a href="#" style="font-size:30px">@item.isim<a></h1>
+                <div class="postcard__subtitle small">
+
+                </div>
+                <div class="postcard__bar" style="margin-left:20px;" style="margin-right:20px;"></div>
+                <div class="postcard__preview-txt" style="margin-left:15px;" style="margin-right:20px;">@item.detaylar</div>
+                <ul class="postcard__tagbox">
+                    <li class="tag__item"><i class="fas fa-map-marker-alt mr-2" style="margin:2px"></i>Konum: @item.konum</li>
+                    <li class="tag__item play yellow">
+                        <a href="/Hotel/HotelReservation/@item.id"><i class="fas fa-ticket-alt mr-2 style="margin:3px"></i> Rezervasyon Yap</a>
+                    </li>
+                </ul>
+            </div>
+        </article>
+    }
+</div>
+<div style="display: flex; justify-content: center; align-items: center;">@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))</div>

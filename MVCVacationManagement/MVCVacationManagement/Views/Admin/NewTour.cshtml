@@ -1,0 +1,52 @@
+﻿@model MVCVacationManagement.Models.Entity.TBLTUR
+@{
+    ViewBag.Title = "NewTour";
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+<h2>Yeni Tur Ekle</h2>
+@using (Html.BeginForm("NewTour", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    <br />
+    <label>Tur Başlığı</label>
+    @Html.TextBoxFor(x => x.tur_basligi, new { @class = "form-control", @required = "required" })
+
+    <br />
+
+    <label>Kalkış Yeri</label>
+    @Html.TextBoxFor(x => x.kalkis_yeri, new { @class = "form-control", @required = "required" })
+    <br />
+
+    <label>Fotoğraf</label>
+    <br />
+    <input type="file" name="fotograf" />
+
+    <br />
+    <label>Süre</label>
+    @Html.TextBoxFor(x => x.sure, new { @class = "form-control", @required = "required" })
+    <br />
+    <label>Kontenjan</label>
+    @Html.TextBoxFor(x => x.kontenjan, new { @class = "form-control", @required = "required" })
+    <br />
+    <label>Ücret</label>
+    @Html.TextBoxFor(x => x.ucret, new { @class = "form-control", @required = "required" })
+    <br />
+    <!--...-->
+
+    <label>Tarih</label>
+    @Html.TextBoxFor(x => x.tarih, new { @class = "form-control", @required = "required" })
+    <br />
+
+    <br />
+    <label>Detay</label>
+    @Html.TextAreaFor(x => x.detay, new { @class = "form-control", @required = "required" })
+    <br />
+    <label>Tur Yetkilisi</label>
+    @Html.DropDownListFor(x => x.TBLTURYETKILISI.id, (List<SelectListItem>)ViewBag.drop, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+}
+
+

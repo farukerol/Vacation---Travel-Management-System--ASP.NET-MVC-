@@ -1,0 +1,65 @@
+﻿@model MVCVacationManagement.Models.Entity.TBLHOTEL
+@{
+    ViewBag.Title = "HotelInformations";
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+@using (Html.BeginForm("UpdateHotel", "Admin", FormMethod.Post))
+{
+    <h2>Otel Bilgileri</h2>
+    <br />
+    @Html.HiddenFor(x => x.id, new { @class = "form-control" })
+
+    <label>Otel İsmi</label>
+    @Html.TextBoxFor(x => x.isim, new { @class = "form-control" })
+    <br />
+
+    <label>Otel Konumu</label>
+    @Html.TextBoxFor(x => x.konum, new { @class = "form-control" })
+    <br />
+
+    
+    @Html.HiddenFor(x => x.fotograf, new { @class = "form-control" })
+    <br />
+
+    <label>Tek Kişilik Oda Sayısı</label>
+    @Html.TextBoxFor(x => x.bir_kisilik_oda_sayisi, new { @class = "form-control" })
+    <br />
+    <label>Tek Kişilik Oda Ücreti</label>
+    @Html.TextBoxFor(x => x.bir_kisilik_oda_ucret, new { @class = "form-control" })
+    <br />
+
+    <label>İki Kişilik Oda Sayısı</label>
+    @Html.TextBoxFor(x => x.iki_kisilik_oda_sayisi, new { @class = "form-control" })
+    <br />
+    <label>İki Kişilik Oda Ücreti</label>
+    @Html.TextBoxFor(x => x.iki_kisilik_oda_ucret, new { @class = "form-control" })
+    <br />
+
+    <label>Üç Kişilik Oda Sayısı</label>
+    @Html.TextBoxFor(x => x.uc_kisilik_oda_sayisi, new { @class = "form-control" })
+    <br />
+    <label>Üç Kişilik Oda Ücreti</label>
+    @Html.TextBoxFor(x => x.uc_kisilik_oda_ucret, new { @class = "form-control" })
+    <br />
+
+    <label>Dört Kişilik Oda Sayısı</label>
+    @Html.TextBoxFor(x => x.dort_kisilik_oda_sayisi, new { @class = "form-control" })
+    <br />
+    <label>Dört Kişilik Oda Ücreti</label>
+    @Html.TextBoxFor(x => x.dort_kisilik_oda_ucret, new { @class = "form-control" })
+    <br />
+
+    <label>Detaylar</label>
+    @Html.TextAreaFor(x => x.detaylar, new { @class = "form-control" })
+    <br />
+
+
+    <label>Hotel Yetkilisi</label>
+    @Html.DropDownListFor(x => x.TBLHOTELYETKILISI.id, (List<SelectListItem>)ViewBag.hotelmanagername, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-warning">Güncelle</button>
+
+}
+
+

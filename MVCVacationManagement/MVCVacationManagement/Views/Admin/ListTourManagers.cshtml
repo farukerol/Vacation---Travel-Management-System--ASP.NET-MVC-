@@ -1,0 +1,49 @@
+﻿@using MVCVacationManagement.Models.Entity
+
+@model List<TBLTURYETKILISI>
+@{
+    ViewBag.Title = "ListTourManagers";
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+<html>
+<head>
+    <title>Tur Yetkilisi Listesi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+
+    <h2>Tur Yetkilisi Listesi</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Adı</th>
+                <th>Soyadı</th>
+                <th>Kullanıcı Adı</th>
+                <th>Sil</th>
+                <th>Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ad</td>
+                    <td>@item.soyad</td>
+                    <td>@item.kullanici_adi</td>
+                    <td>@Html.ActionLink("Sil", "DeleteTourManager", new { id = item.id }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor Musunuz?')" })</td>
+                    <td><a href="/Admin/TourManagerInformations/@item.id" class="btn btn-success">Güncelle</a></td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+  
+</body>
+
+</html>

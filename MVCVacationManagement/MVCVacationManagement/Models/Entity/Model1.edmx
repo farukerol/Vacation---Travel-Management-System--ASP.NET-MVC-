@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbMvcVacationManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBLADMIN">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_adi" Type="varchar" MaxLength="50" />
+          <Property Name="sifre" Type="varchar" MaxLength="50" />
+          <Property Name="rol" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLHOTEL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isim" Type="varchar" MaxLength="100" />
+          <Property Name="konum" Type="varchar" MaxLength="50" />
+          <Property Name="ozellikler" Type="varchar" MaxLength="3000" />
+          <Property Name="fotograf" Type="varchar" MaxLength="500" />
+          <Property Name="fotograf2" Type="varchar" MaxLength="500" />
+          <Property Name="fotograf3" Type="varchar" MaxLength="500" />
+          <Property Name="bir_kisilik_oda_sayisi" Type="int" />
+          <Property Name="bir_kisilik_oda_ucret" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="iki_kisilik_oda_sayisi" Type="int" />
+          <Property Name="iki_kisilik_oda_ucret" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="uc_kisilik_oda_sayisi" Type="int" />
+          <Property Name="uc_kisilik_oda_ucret" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="dort_kisilik_oda_sayisi" Type="int" />
+          <Property Name="dort_kisilik_oda_ucret" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="detaylar" Type="varchar" MaxLength="5000" />
+          <Property Name="hotel_yetkilisi" Type="int" />
+          <Property Name="durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBLHOTELREZERVASYON">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteri" Type="int" />
+          <Property Name="baslangic" Type="smalldatetime" />
+          <Property Name="bitis" Type="smalldatetime" />
+          <Property Name="ucret" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="durum" Type="bit" />
+          <Property Name="hotel" Type="int" />
+          <Property Name="kisi_sayisi" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLHOTELYETKILISI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="varchar" MaxLength="50" />
+          <Property Name="soyad" Type="varchar" MaxLength="50" />
+          <Property Name="kullanici_adi" Type="varchar" MaxLength="50" />
+          <Property Name="sifre" Type="varchar" MaxLength="50" />
+          <Property Name="durum" Type="bit" />
+          <Property Name="rol" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLMUSTERI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="varchar" MaxLength="50" />
+          <Property Name="soyad" Type="varchar" MaxLength="50" />
+          <Property Name="telefon_numarasi" Type="varchar" MaxLength="50" />
+          <Property Name="kullanici_adi" Type="varchar" MaxLength="50" />
+          <Property Name="sifre" Type="varchar" MaxLength="50" />
+          <Property Name="tur_rezervasyonu" Type="int" />
+          <Property Name="hotel_rezervasyonu" Type="int" />
+          <Property Name="durum" Type="bit" />
+          <Property Name="rol" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLTUR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tur_basligi" Type="varchar" MaxLength="50" />
+          <Property Name="kalkis_yeri" Type="varchar" MaxLength="50" />
+          <Property Name="fotograf" Type="varchar" MaxLength="500" />
+          <Property Name="sure" Type="varchar" MaxLength="50" />
+          <Property Name="ucret" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="tarih" Type="smalldatetime" />
+          <Property Name="kontenjan" Type="int" />
+          <Property Name="detay" Type="varchar" MaxLength="4000" />
+          <Property Name="tur_yetkilisi" Type="int" />
+          <Property Name="durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBLTURREZERVASYON">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteri" Type="int" />
+          <Property Name="tur" Type="int" />
+          <Property Name="ucret" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBLTURYETKILISI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="varchar" MaxLength="50" />
+          <Property Name="soyad" Type="varchar" MaxLength="50" />
+          <Property Name="kullanici_adi" Type="varchar" MaxLength="50" />
+          <Property Name="sifre" Type="varchar" MaxLength="50" />
+          <Property Name="durum" Type="bit" />
+          <Property Name="rol" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_TBLHOTEL_TBLHOTELYETKILISI">
+          <End Role="TBLHOTELYETKILISI" Type="Self.TBLHOTELYETKILISI" Multiplicity="0..1" />
+          <End Role="TBLHOTEL" Type="Self.TBLHOTEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLHOTELYETKILISI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLHOTEL">
+              <PropertyRef Name="hotel_yetkilisi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLHOTELREZERVASYON_TBLHOTEL">
+          <End Role="TBLHOTEL" Type="Self.TBLHOTEL" Multiplicity="0..1" />
+          <End Role="TBLHOTELREZERVASYON" Type="Self.TBLHOTELREZERVASYON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLHOTEL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLHOTELREZERVASYON">
+              <PropertyRef Name="hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLHOTELREZERVASYON_TBLMUSTERI">
+          <End Role="TBLMUSTERI" Type="Self.TBLMUSTERI" Multiplicity="0..1" />
+          <End Role="TBLHOTELREZERVASYON" Type="Self.TBLHOTELREZERVASYON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLMUSTERI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLHOTELREZERVASYON">
+              <PropertyRef Name="musteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLMUSTERI_TBLHOTELREZERVASYON">
+          <End Role="TBLHOTELREZERVASYON" Type="Self.TBLHOTELREZERVASYON" Multiplicity="0..1" />
+          <End Role="TBLMUSTERI" Type="Self.TBLMUSTERI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLHOTELREZERVASYON">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLMUSTERI">
+              <PropertyRef Name="hotel_rezervasyonu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLMUSTERI_TBLTURREZERVASYON">
+          <End Role="TBLTURREZERVASYON" Type="Self.TBLTURREZERVASYON" Multiplicity="0..1" />
+          <End Role="TBLMUSTERI" Type="Self.TBLMUSTERI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLTURREZERVASYON">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLMUSTERI">
+              <PropertyRef Name="tur_rezervasyonu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLTUR_TBLTURYETKILISI">
+          <End Role="TBLTURYETKILISI" Type="Self.TBLTURYETKILISI" Multiplicity="0..1" />
+          <End Role="TBLTUR" Type="Self.TBLTUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLTURYETKILISI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLTUR">
+              <PropertyRef Name="tur_yetkilisi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLTURREZERVASYON_TBLMUSTERI">
+          <End Role="TBLMUSTERI" Type="Self.TBLMUSTERI" Multiplicity="0..1" />
+          <End Role="TBLTURREZERVASYON" Type="Self.TBLTURREZERVASYON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLMUSTERI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLTURREZERVASYON">
+              <PropertyRef Name="musteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLTURREZERVASYON_TBLTUR">
+          <End Role="TBLTUR" Type="Self.TBLTUR" Multiplicity="0..1" />
+          <End Role="TBLTURREZERVASYON" Type="Self.TBLTURREZERVASYON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLTUR">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLTURREZERVASYON">
+              <PropertyRef Name="tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbMvcVacationManagementModelStoreContainer">
+          <EntitySet Name="TBLADMIN" EntityType="Self.TBLADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLHOTEL" EntityType="Self.TBLHOTEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLHOTELREZERVASYON" EntityType="Self.TBLHOTELREZERVASYON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLHOTELYETKILISI" EntityType="Self.TBLHOTELYETKILISI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLMUSTERI" EntityType="Self.TBLMUSTERI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLTUR" EntityType="Self.TBLTUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLTURREZERVASYON" EntityType="Self.TBLTURREZERVASYON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLTURYETKILISI" EntityType="Self.TBLTURYETKILISI" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBLHOTEL_TBLHOTELYETKILISI" Association="Self.FK_TBLHOTEL_TBLHOTELYETKILISI">
+            <End Role="TBLHOTELYETKILISI" EntitySet="TBLHOTELYETKILISI" />
+            <End Role="TBLHOTEL" EntitySet="TBLHOTEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLHOTELREZERVASYON_TBLHOTEL" Association="Self.FK_TBLHOTELREZERVASYON_TBLHOTEL">
+            <End Role="TBLHOTEL" EntitySet="TBLHOTEL" />
+            <End Role="TBLHOTELREZERVASYON" EntitySet="TBLHOTELREZERVASYON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLHOTELREZERVASYON_TBLMUSTERI" Association="Self.FK_TBLHOTELREZERVASYON_TBLMUSTERI">
+            <End Role="TBLMUSTERI" EntitySet="TBLMUSTERI" />
+            <End Role="TBLHOTELREZERVASYON" EntitySet="TBLHOTELREZERVASYON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLMUSTERI_TBLHOTELREZERVASYON" Association="Self.FK_TBLMUSTERI_TBLHOTELREZERVASYON">
+            <End Role="TBLHOTELREZERVASYON" EntitySet="TBLHOTELREZERVASYON" />
+            <End Role="TBLMUSTERI" EntitySet="TBLMUSTERI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLMUSTERI_TBLTURREZERVASYON" Association="Self.FK_TBLMUSTERI_TBLTURREZERVASYON">
+            <End Role="TBLTURREZERVASYON" EntitySet="TBLTURREZERVASYON" />
+            <End Role="TBLMUSTERI" EntitySet="TBLMUSTERI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLTUR_TBLTURYETKILISI" Association="Self.FK_TBLTUR_TBLTURYETKILISI">
+            <End Role="TBLTURYETKILISI" EntitySet="TBLTURYETKILISI" />
+            <End Role="TBLTUR" EntitySet="TBLTUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLTURREZERVASYON_TBLMUSTERI" Association="Self.FK_TBLTURREZERVASYON_TBLMUSTERI">
+            <End Role="TBLMUSTERI" EntitySet="TBLMUSTERI" />
+            <End Role="TBLTURREZERVASYON" EntitySet="TBLTURREZERVASYON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLTURREZERVASYON_TBLTUR" Association="Self.FK_TBLTURREZERVASYON_TBLTUR">
+            <End Role="TBLTUR" EntitySet="TBLTUR" />
+            <End Role="TBLTURREZERVASYON" EntitySet="TBLTURREZERVASYON" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbMvcVacationManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBLADMIN">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBLHOTEL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isim" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="konum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ozellikler" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="fotograf" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="bir_kisilik_oda_sayisi" Type="Int32" />
+          <Property Name="bir_kisilik_oda_ucret" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="iki_kisilik_oda_sayisi" Type="Int32" />
+          <Property Name="iki_kisilik_oda_ucret" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="uc_kisilik_oda_sayisi" Type="Int32" />
+          <Property Name="uc_kisilik_oda_ucret" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="dort_kisilik_oda_sayisi" Type="Int32" />
+          <Property Name="dort_kisilik_oda_ucret" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="detaylar" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="hotel_yetkilisi" Type="Int32" />
+          <Property Name="durum" Type="Boolean" />
+          <NavigationProperty Name="TBLHOTELREZERVASYON" Relationship="Self.FK_TBLHOTELREZERVASYON_TBLHOTEL" FromRole="TBLHOTEL" ToRole="TBLHOTELREZERVASYON" />
+          <NavigationProperty Name="TBLHOTELYETKILISI" Relationship="DbMvcVacationManagementModel.FK_TBLHOTEL_TBLHOTELYETKILISI" FromRole="TBLHOTEL" ToRole="TBLHOTELYETKILISI" />
+          <Property Name="fotograf2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="fotograf3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBLHOTELREZERVASYON">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteri" Type="Int32" />
+          <Property Name="baslangic" Type="DateTime" Precision="0" />
+          <Property Name="bitis" Type="DateTime" Precision="0" />
+          <Property Name="ucret" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="durum" Type="Boolean" />
+          <Property Name="hotel" Type="Int32" />
+          <NavigationProperty Name="TBLHOTEL" Relationship="Self.FK_TBLHOTELREZERVASYON_TBLHOTEL" FromRole="TBLHOTELREZERVASYON" ToRole="TBLHOTEL" />
+          <NavigationProperty Name="TBLMUSTERI" Relationship="Self.FK_TBLHOTELREZERVASYON_TBLMUSTERI" FromRole="TBLHOTELREZERVASYON" ToRole="TBLMUSTERI" />
+          <NavigationProperty Name="TBLMUSTERI1" Relationship="Self.FK_TBLMUSTERI_TBLHOTELREZERVASYON" FromRole="TBLHOTELREZERVASYON" ToRole="TBLMUSTERI" />
+          <Property Name="kisi_sayisi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBLHOTELYETKILISI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kullanici_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="durum" Type="Boolean" />
+          <NavigationProperty Name="TBLHOTEL" Relationship="DbMvcVacationManagementModel.FK_TBLHOTEL_TBLHOTELYETKILISI" FromRole="TBLHOTELYETKILISI" ToRole="TBLHOTEL" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBLMUSTERI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kullanici_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tur_rezervasyonu" Type="Int32" />
+          <Property Name="hotel_rezervasyonu" Type="Int32" />
+          <Property Name="durum" Type="Boolean" />
+          <NavigationProperty Name="TBLHOTELREZERVASYON" Relationship="Self.FK_TBLHOTELREZERVASYON_TBLMUSTERI" FromRole="TBLMUSTERI" ToRole="TBLHOTELREZERVASYON" />
+          <NavigationProperty Name="TBLHOTELREZERVASYON1" Relationship="Self.FK_TBLMUSTERI_TBLHOTELREZERVASYON" FromRole="TBLMUSTERI" ToRole="TBLHOTELREZERVASYON" />
+          <NavigationProperty Name="TBLTURREZERVASYON" Relationship="Self.FK_TBLMUSTERI_TBLTURREZERVASYON" FromRole="TBLMUSTERI" ToRole="TBLTURREZERVASYON" />
+          <NavigationProperty Name="TBLTURREZERVASYON1" Relationship="Self.FK_TBLTURREZERVASYON_TBLMUSTERI" FromRole="TBLMUSTERI" ToRole="TBLTURREZERVASYON" />
+          <Property Name="telefon_numarasi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBLTUR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tur_basligi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kalkis_yeri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fotograf" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="sure" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ucret" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tarih" Type="DateTime" Precision="0" />
+          <Property Name="detay" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="tur_yetkilisi" Type="Int32" />
+          <Property Name="durum" Type="Boolean" />
+          <NavigationProperty Name="TBLTURREZERVASYON" Relationship="Self.FK_TBLTURREZERVASYON_TBLTUR" FromRole="TBLTUR" ToRole="TBLTURREZERVASYON" />
+          <NavigationProperty Name="TBLTURYETKILISI" Relationship="DbMvcVacationManagementModel.FK_TBLTUR_TBLTURYETKILISI" FromRole="TBLTUR" ToRole="TBLTURYETKILISI" />
+          <Property Name="kontenjan" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TBLTURREZERVASYON">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteri" Type="Int32" />
+          <Property Name="tur" Type="Int32" />
+          <Property Name="ucret" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="durum" Type="Boolean" />
+          <NavigationProperty Name="TBLMUSTERI" Relationship="Self.FK_TBLMUSTERI_TBLTURREZERVASYON" FromRole="TBLTURREZERVASYON" ToRole="TBLMUSTERI" />
+          <NavigationProperty Name="TBLMUSTERI1" Relationship="Self.FK_TBLTURREZERVASYON_TBLMUSTERI" FromRole="TBLTURREZERVASYON" ToRole="TBLMUSTERI" />
+          <NavigationProperty Name="TBLTUR" Relationship="Self.FK_TBLTURREZERVASYON_TBLTUR" FromRole="TBLTURREZERVASYON" ToRole="TBLTUR" />
+        </EntityType>
+        <EntityType Name="TBLTURYETKILISI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kullanici_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLTUR" Relationship="DbMvcVacationManagementModel.FK_TBLTUR_TBLTURYETKILISI" FromRole="TBLTURYETKILISI" ToRole="TBLTUR" />
+          <Property Name="durum" Type="Boolean" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_TBLHOTELREZERVASYON_TBLHOTEL">
+          <End Role="TBLHOTEL" Type="Self.TBLHOTEL" Multiplicity="0..1" />
+          <End Role="TBLHOTELREZERVASYON" Type="Self.TBLHOTELREZERVASYON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLHOTEL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLHOTELREZERVASYON">
+              <PropertyRef Name="hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLHOTELREZERVASYON_TBLMUSTERI">
+          <End Role="TBLMUSTERI" Type="Self.TBLMUSTERI" Multiplicity="0..1" />
+          <End Role="TBLHOTELREZERVASYON" Type="Self.TBLHOTELREZERVASYON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLMUSTERI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLHOTELREZERVASYON">
+              <PropertyRef Name="musteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLMUSTERI_TBLHOTELREZERVASYON">
+          <End Role="TBLHOTELREZERVASYON" Type="Self.TBLHOTELREZERVASYON" Multiplicity="0..1" />
+          <End Role="TBLMUSTERI" Type="Self.TBLMUSTERI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLHOTELREZERVASYON">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLMUSTERI">
+              <PropertyRef Name="hotel_rezervasyonu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLMUSTERI_TBLTURREZERVASYON">
+          <End Role="TBLTURREZERVASYON" Type="Self.TBLTURREZERVASYON" Multiplicity="0..1" />
+          <End Role="TBLMUSTERI" Type="Self.TBLMUSTERI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLTURREZERVASYON">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLMUSTERI">
+              <PropertyRef Name="tur_rezervasyonu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLTURREZERVASYON_TBLMUSTERI">
+          <End Role="TBLMUSTERI" Type="Self.TBLMUSTERI" Multiplicity="0..1" />
+          <End Role="TBLTURREZERVASYON" Type="Self.TBLTURREZERVASYON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLMUSTERI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLTURREZERVASYON">
+              <PropertyRef Name="musteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLTURREZERVASYON_TBLTUR">
+          <End Role="TBLTUR" Type="Self.TBLTUR" Multiplicity="0..1" />
+          <End Role="TBLTURREZERVASYON" Type="Self.TBLTURREZERVASYON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLTUR">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLTURREZERVASYON">
+              <PropertyRef Name="tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbMvcVacationManagementEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBLADMIN" EntityType="Self.TBLADMIN" />
+          <EntitySet Name="TBLHOTEL" EntityType="Self.TBLHOTEL" />
+          <EntitySet Name="TBLHOTELREZERVASYON" EntityType="Self.TBLHOTELREZERVASYON" />
+          <EntitySet Name="TBLHOTELYETKILISI" EntityType="Self.TBLHOTELYETKILISI" />
+          <EntitySet Name="TBLMUSTERI" EntityType="Self.TBLMUSTERI" />
+          <EntitySet Name="TBLTUR" EntityType="Self.TBLTUR" />
+          <EntitySet Name="TBLTURREZERVASYON" EntityType="Self.TBLTURREZERVASYON" />
+          <EntitySet Name="TBLTURYETKILISI" EntityType="Self.TBLTURYETKILISI" />
+          <AssociationSet Name="FK_TBLHOTELREZERVASYON_TBLHOTEL" Association="Self.FK_TBLHOTELREZERVASYON_TBLHOTEL">
+            <End Role="TBLHOTEL" EntitySet="TBLHOTEL" />
+            <End Role="TBLHOTELREZERVASYON" EntitySet="TBLHOTELREZERVASYON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLHOTELREZERVASYON_TBLMUSTERI" Association="Self.FK_TBLHOTELREZERVASYON_TBLMUSTERI">
+            <End Role="TBLMUSTERI" EntitySet="TBLMUSTERI" />
+            <End Role="TBLHOTELREZERVASYON" EntitySet="TBLHOTELREZERVASYON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLMUSTERI_TBLHOTELREZERVASYON" Association="Self.FK_TBLMUSTERI_TBLHOTELREZERVASYON">
+            <End Role="TBLHOTELREZERVASYON" EntitySet="TBLHOTELREZERVASYON" />
+            <End Role="TBLMUSTERI" EntitySet="TBLMUSTERI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLMUSTERI_TBLTURREZERVASYON" Association="Self.FK_TBLMUSTERI_TBLTURREZERVASYON">
+            <End Role="TBLTURREZERVASYON" EntitySet="TBLTURREZERVASYON" />
+            <End Role="TBLMUSTERI" EntitySet="TBLMUSTERI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLTURREZERVASYON_TBLMUSTERI" Association="Self.FK_TBLTURREZERVASYON_TBLMUSTERI">
+            <End Role="TBLMUSTERI" EntitySet="TBLMUSTERI" />
+            <End Role="TBLTURREZERVASYON" EntitySet="TBLTURREZERVASYON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLTURREZERVASYON_TBLTUR" Association="Self.FK_TBLTURREZERVASYON_TBLTUR">
+            <End Role="TBLTUR" EntitySet="TBLTUR" />
+            <End Role="TBLTURREZERVASYON" EntitySet="TBLTURREZERVASYON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLHOTEL_TBLHOTELYETKILISI" Association="DbMvcVacationManagementModel.FK_TBLHOTEL_TBLHOTELYETKILISI">
+            <End Role="TBLHOTELYETKILISI" EntitySet="TBLHOTELYETKILISI" />
+            <End Role="TBLHOTEL" EntitySet="TBLHOTEL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLTUR_TBLTURYETKILISI" Association="DbMvcVacationManagementModel.FK_TBLTUR_TBLTURYETKILISI">
+            <End Role="TBLTURYETKILISI" EntitySet="TBLTURYETKILISI" />
+            <End Role="TBLTUR" EntitySet="TBLTUR" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_TBLHOTEL_TBLHOTELYETKILISI">
+          <End Type="DbMvcVacationManagementModel.TBLHOTELYETKILISI" Role="TBLHOTELYETKILISI" Multiplicity="0..1" />
+          <End Type="DbMvcVacationManagementModel.TBLHOTEL" Role="TBLHOTEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLHOTELYETKILISI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLHOTEL">
+              <PropertyRef Name="hotel_yetkilisi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLTUR_TBLTURYETKILISI">
+          <End Type="DbMvcVacationManagementModel.TBLTURYETKILISI" Role="TBLTURYETKILISI" Multiplicity="0..1" />
+          <End Type="DbMvcVacationManagementModel.TBLTUR" Role="TBLTUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLTURYETKILISI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBLTUR">
+              <PropertyRef Name="tur_yetkilisi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbMvcVacationManagementModelStoreContainer" CdmEntityContainer="DbMvcVacationManagementEntities3">
+          <EntitySetMapping Name="TBLADMIN">
+            <EntityTypeMapping TypeName="DbMvcVacationManagementModel.TBLADMIN">
+              <MappingFragment StoreEntitySet="TBLADMIN">
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kullanici_adi" ColumnName="kullanici_adi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLHOTEL">
+            <EntityTypeMapping TypeName="DbMvcVacationManagementModel.TBLHOTEL">
+              <MappingFragment StoreEntitySet="TBLHOTEL">
+                <ScalarProperty Name="fotograf3" ColumnName="fotograf3" />
+                <ScalarProperty Name="fotograf2" ColumnName="fotograf2" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="isim" ColumnName="isim" />
+                <ScalarProperty Name="konum" ColumnName="konum" />
+                <ScalarProperty Name="ozellikler" ColumnName="ozellikler" />
+                <ScalarProperty Name="fotograf" ColumnName="fotograf" />
+                <ScalarProperty Name="bir_kisilik_oda_sayisi" ColumnName="bir_kisilik_oda_sayisi" />
+                <ScalarProperty Name="bir_kisilik_oda_ucret" ColumnName="bir_kisilik_oda_ucret" />
+                <ScalarProperty Name="iki_kisilik_oda_sayisi" ColumnName="iki_kisilik_oda_sayisi" />
+                <ScalarProperty Name="iki_kisilik_oda_ucret" ColumnName="iki_kisilik_oda_ucret" />
+                <ScalarProperty Name="uc_kisilik_oda_sayisi" ColumnName="uc_kisilik_oda_sayisi" />
+                <ScalarProperty Name="uc_kisilik_oda_ucret" ColumnName="uc_kisilik_oda_ucret" />
+                <ScalarProperty Name="dort_kisilik_oda_sayisi" ColumnName="dort_kisilik_oda_sayisi" />
+                <ScalarProperty Name="dort_kisilik_oda_ucret" ColumnName="dort_kisilik_oda_ucret" />
+                <ScalarProperty Name="detaylar" ColumnName="detaylar" />
+                <ScalarProperty Name="hotel_yetkilisi" ColumnName="hotel_yetkilisi" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLHOTELREZERVASYON">
+            <EntityTypeMapping TypeName="DbMvcVacationManagementModel.TBLHOTELREZERVASYON">
+              <MappingFragment StoreEntitySet="TBLHOTELREZERVASYON">
+                <ScalarProperty Name="kisi_sayisi" ColumnName="kisi_sayisi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="musteri" ColumnName="musteri" />
+                <ScalarProperty Name="baslangic" ColumnName="baslangic" />
+                <ScalarProperty Name="bitis" ColumnName="bitis" />
+                <ScalarProperty Name="ucret" ColumnName="ucret" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+                <ScalarProperty Name="hotel" ColumnName="hotel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLHOTELYETKILISI">
+            <EntityTypeMapping TypeName="DbMvcVacationManagementModel.TBLHOTELYETKILISI">
+              <MappingFragment StoreEntitySet="TBLHOTELYETKILISI">
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="kullanici_adi" ColumnName="kullanici_adi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLMUSTERI">
+            <EntityTypeMapping TypeName="DbMvcVacationManagementModel.TBLMUSTERI">
+              <MappingFragment StoreEntitySet="TBLMUSTERI">
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="telefon_numarasi" ColumnName="telefon_numarasi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="kullanici_adi" ColumnName="kullanici_adi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="tur_rezervasyonu" ColumnName="tur_rezervasyonu" />
+                <ScalarProperty Name="hotel_rezervasyonu" ColumnName="hotel_rezervasyonu" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLTUR">
+            <EntityTypeMapping TypeName="DbMvcVacationManagementModel.TBLTUR">
+              <MappingFragment StoreEntitySet="TBLTUR">
+                <ScalarProperty Name="kontenjan" ColumnName="kontenjan" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tur_basligi" ColumnName="tur_basligi" />
+                <ScalarProperty Name="kalkis_yeri" ColumnName="kalkis_yeri" />
+                <ScalarProperty Name="fotograf" ColumnName="fotograf" />
+                <ScalarProperty Name="sure" ColumnName="sure" />
+                <ScalarProperty Name="ucret" ColumnName="ucret" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="detay" ColumnName="detay" />
+                <ScalarProperty Name="tur_yetkilisi" ColumnName="tur_yetkilisi" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLTURREZERVASYON">
+            <EntityTypeMapping TypeName="DbMvcVacationManagementModel.TBLTURREZERVASYON">
+              <MappingFragment StoreEntitySet="TBLTURREZERVASYON">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="musteri" ColumnName="musteri" />
+                <ScalarProperty Name="tur" ColumnName="tur" />
+                <ScalarProperty Name="ucret" ColumnName="ucret" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLTURYETKILISI">
+            <EntityTypeMapping TypeName="DbMvcVacationManagementModel.TBLTURYETKILISI">
+              <MappingFragment StoreEntitySet="TBLTURYETKILISI">
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="kullanici_adi" ColumnName="kullanici_adi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,41 @@
+﻿@model MVCVacationManagement.Models.Entity.TBLTUR
+@{
+    ViewBag.Title = "newTour";
+    Layout = "~/Views/Shared/_TourManagerLayout.cshtml";
+}
+
+
+<form method="post">
+    <h2>Yeni Tur Ekleme</h2>
+    <br />
+    <label>Tur Başlığı</label>
+    @Html.TextBoxFor(x => x.tur_basligi, new { @class = "form-control" })
+
+    <br />
+
+    <label>Kalkış Yeri</label>
+    @Html.TextBoxFor(x => x.kalkis_yeri, new { @class = "form-control" })
+    <br />
+
+    <label>Fotoğraf Linki</label>
+    @Html.TextBoxFor(x => x.fotograf, new { @class = "form-control" })
+    <br />
+
+    <label>Süre</label>
+    @Html.TextBoxFor(x => x.sure, new { @class = "form-control" })
+    <br />
+    <label>Ücret</label>
+    @Html.TextBoxFor(x => x.ucret, new { @class = "form-control" })
+    <br />
+    <label>Tarih</label>
+    @Html.TextBoxFor(x => x.tarih, new { @class = "form-control" })
+    <br />
+    <label>Detay</label>
+    @Html.TextBoxFor(x => x.detay, new { @class = "form-control" })
+    <br />
+    <label>Tur Yetkilisi</label>
+    @Html.TextBoxFor(x => x.tur_yetkilisi, new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-info">Kaydet</button>
+</form>

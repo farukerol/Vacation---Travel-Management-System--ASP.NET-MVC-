@@ -1,0 +1,42 @@
+﻿@model MVCVacationManagement.Models.Entity.TBLTUR
+@{
+    ViewBag.Title = "TourInformations";
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("UpdateTour", "Admin"))
+{
+    <h2>Tur Bilgileri</h2>
+    <br />
+    @Html.HiddenFor(x => x.id, new { @class = "form-control" })
+    <label>Tur Başlığı</label>
+    @Html.TextBoxFor(x => x.tur_basligi, new { @class = "form-control" })
+    <br />
+    <label>Kalkış Yeri</label>
+    @Html.TextBoxFor(x => x.kalkis_yeri, new { @class = "form-control" })
+    <br />
+    <label>Süre</label>
+    @Html.TextBoxFor(x => x.sure, new { @class = "form-control" })
+    <br />
+    <label>Ücret</label>
+    @Html.TextBoxFor(x => x.ucret, new { @class = "form-control" })
+    <br />
+    @Html.HiddenFor(x => x.fotograf, new { @class = "form-control" })
+    <br />
+    <label>Tarih</label>
+    @Html.TextBoxFor(x => x.tarih, new { @class = "form-control" })
+    <br />
+    <label>Kontenjan</label>
+    @Html.TextBoxFor(x => x.kontenjan, new { @class = "form-control" })
+    <br />
+    <label>Detaylar</label>
+    @Html.TextBoxFor(x => x.detay, new { @class = "form-control" })
+    <br />
+    <label>Tur Yetkilisi</label>
+    @Html.DropDownListFor(x => x.TBLTURYETKILISI.id, (List<SelectListItem>)ViewBag.tourmanagername, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-warning">Güncelle</button>
+
+}

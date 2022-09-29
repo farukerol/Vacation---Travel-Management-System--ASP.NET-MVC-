@@ -1,0 +1,60 @@
+﻿@using MVCVacationManagement.Models.Entity
+
+@model List<TBLHOTELREZERVASYON>
+@{
+    ViewBag.Title = "ListCustomers";
+    Layout = "~/Views/Shared/_HotelManagerLayout.cshtml";
+}
+
+<html>
+<head>
+    <title>Müşteriler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <h2>Sorumlu Olunan Müşteriler</h2>
+    @using (Html.BeginForm("ListCustomers", "HotelManager", FormMethod.Get))
+    {
+        <div style="margin-bottom:15px; margin-top:15px;">
+            <b style="color:black">Otel İsmi veya Müşteri İsmi Girin:</b>@Html.TextBox("search", null, new { style = "color:black" })
+            <input style="color:black" type="submit" value="Ara" />
+        </div>
+    }
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Otel Adı</th>
+                <th>Müşteri Adı</th>
+                <th>Müşteri Soyadı</th>
+                <th>Başlangıç Tarihi</th>
+                <th>Bitiş Tarihi</th>
+                <th>Kişi Sayısı</th>
+                <th>Müşteri Telefon Numarası</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TBLHOTEL.isim</td>
+                    <td>@item.TBLMUSTERI.ad</td>
+                    <td>@item.TBLMUSTERI.soyad</td>
+                    <td>@Convert.ToDateTime(item.baslangic).ToString("dd/MM/yyyy")</td>
+                    <td>@Convert.ToDateTime(item.bitis).ToString("dd/MM/yyyy")</td>
+                    <td>@item.kisi_sayisi</td>
+                    <td>@item.TBLMUSTERI.telefon_numarasi</td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'>
+    <link rel="stylesheet" href="~/cards-responsive/dist/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/HomePage/Index/">Vacation Management</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/HomePage/Index/">Ana Sayfa</a></li>
+                <li><a href="/Hotel/Index">Oteller</a></li>
+                <li><a href="/Tur/Index">Turlar</a></li>
+                @if (User.IsInRole("admin") || User.IsInRole("musteri") || User.IsInRole("tur_yetkilisi") || User.IsInRole("hotel_yetkilisi"))
+            {
+            <b>Hoş geldin  @HttpContext.Current.User.Identity.Name</b>
+            }
+                </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (User.IsInRole("musteri"))
+                {
+                    <li><a href="~/Customer/Index">Müşteri Paneli</a></li>
+
+                }
+                @if (User.IsInRole("admin"))
+                {
+                    <li><a href="~/Admin/Index">Admin Paneli</a></li>
+
+                }
+                @if (User.IsInRole("tur_yetkilisi"))
+                {
+                    <li><a href="~/TourManager/Index">Tur Yetkilisi Paneli</a></li>
+
+                }
+                @if (User.IsInRole("hotel_yetkilisi"))
+                {
+                    <li><a href="~/HotelManager/Index">Otel Yetkisi Paneli</a></li>
+
+                }
+
+                @if (!User.IsInRole("admin") && !User.IsInRole("musteri") && !User.IsInRole("tur_yetkilisi") && !User.IsInRole("hotel_yetkilisi"))
+                {
+                    <li><a href="/Login/Login/">Giriş Yap</a></li>
+                    <li><a href="/HomePage/Register">Kayıt Ol</a></li>
+
+                }
+                @if (User.IsInRole("admin") || User.IsInRole("musteri") || User.IsInRole("tur_yetkilisi") || User.IsInRole("hotel_yetkilisi"))
+                {
+                    <li><a href="/Login/Logout">Çıkış Yap</a></li>
+
+                }
+            </ul>
+        </div>
+    </nav>
+
+    
+        @RenderBody()
+    
+
+</body>
+</html>

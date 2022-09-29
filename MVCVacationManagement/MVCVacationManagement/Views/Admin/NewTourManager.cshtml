@@ -1,0 +1,28 @@
+﻿@model MVCVacationManagement.Models.Entity.TBLTURYETKILISI
+@{
+    ViewBag.Title = "NewTourManager";
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+<form method="post">
+    <h2>Yeni Tur Yetkilisi Ekle</h2>
+    <br />
+    <label>Adı</label>
+    @Html.TextBoxFor(item => item.ad, new { @class = "form-control" })
+    <br />
+
+    <label>Soyadı</label>
+    @Html.TextBoxFor(item => item.soyad, new { @class = "form-control" })
+    <br />
+
+    <label>Kullanıcı Adı</label>
+    @Html.TextBoxFor(item => item.kullanici_adi, new { @class = "form-control" })
+    <br />
+
+    <label>Şifre</label>
+    @Html.TextBoxFor(item => item.sifre, new { @class = "form-control" })
+    <br />
+
+
+    <button class="btn btn-info">Kaydet</button>
+</form>

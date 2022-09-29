@@ -1,0 +1,52 @@
+﻿@using MVCVacationManagement.Models.Entity
+
+@model List<TBLHOTELREZERVASYON>
+@{
+    ViewBag.Title = "ListHotelReservations";
+    Layout = "~/Views/Shared/_CustomerPanelLayout.cshtml";
+}
+
+<html>
+<head>
+    <title>Otel Rezervasyonları</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <h2>Otel Rezervasyonlarım</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Otel Adı</th>
+                <th>Konum</th>
+                <th>Başlangıç Tarihi</th>
+                <th>Bitiş Tarihi</th>
+                <th>Kişi Sayısı</th>
+                <th>Otel Yetkilisi</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.TBLHOTEL.isim</td>
+                <td>@item.TBLHOTEL.konum</td>
+                <td>@Convert.ToDateTime(item.baslangic).ToString("dd/MM/yyyy")</td>
+                <td>@Convert.ToDateTime(item.bitis).ToString("dd/MM/yyyy")</td>
+                <td>@item.kisi_sayisi</td>
+                <td>@item.TBLHOTEL.TBLHOTELYETKILISI.ad @item.TBLHOTEL.TBLHOTELYETKILISI.soyad </td>
+
+            </tr>
+            }
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+

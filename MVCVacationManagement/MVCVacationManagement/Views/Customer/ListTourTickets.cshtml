@@ -1,0 +1,52 @@
+﻿@using MVCVacationManagement.Models.Entity
+
+@model List<TBLTURREZERVASYON>
+@{
+    ViewBag.Title = "ListTourTickets";
+    Layout = "~/Views/Shared/_CustomerPanelLayout.cshtml";
+}
+
+<html>
+<head>
+    <title>Tur Biletlerim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <h2>Tur Biletlerim</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tur Adı</th>
+                <th>Kalkış Yeri</th>
+                <th>Süre</th>
+                <th>Ücret</th>
+                <th>Tarih</th>
+                <th>Tur Yetkilisi</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TBLTUR.tur_basligi</td>
+                    <td>@item.TBLTUR.kalkis_yeri</td>
+                    <td>@item.TBLTUR.sure</td>
+                    <td>@item.TBLTUR.ucret</td>
+                    <td>@Convert.ToDateTime(item.TBLTUR.tarih).ToString("dd/MM/yyyy")</td>
+                    <td>@item.TBLTUR.TBLTURYETKILISI.ad @item.TBLTUR.TBLTURYETKILISI.soyad </td>
+                  
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+

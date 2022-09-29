@@ -1,0 +1,57 @@
+﻿@using MVCVacationManagement.Models.Entity
+
+@model List<TBLTUR>
+@{
+    ViewBag.Title = "ListTours";
+    Layout = "~/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+<html>
+<head>
+    <title>Tur Listesi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+    <h2>Tur Listesi</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tur Başlığı</th>
+                <th>Kalkış Yeri</th>
+                <th>Süre</th>
+                <th>Ücret</th>
+                <th>Fotoğraf</th>
+                <th>Tarih</th>
+                <th>Kontenjan</th>
+                <th>Tur Yetkilisi</th>
+                <th>Sil</th>
+                <th>Güncelle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.tur_basligi</td>
+                    <td>@item.kalkis_yeri</td>
+                    <td>@item.sure</td>
+                    <td>@item.ucret</td>
+                    <td><a href="#"><img src="@item.fotograf" alt="Örnek Resim" style="width:100px" /></a></td>
+                    <td>@Convert.ToDateTime(item.tarih).ToString("dd/MM/yyyy")</td>
+                    <td>@item.kontenjan</td>
+                    <td>@item.TBLTURYETKILISI.ad @item.TBLTURYETKILISI.soyad </td>
+                    <td>@Html.ActionLink("Sil", "DeleteTour", new { id = item.id }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor Musunuz?')" })</td>
+                    <td><a href="/Admin/TourInformations/@item.id" class="btn btn-success">Güncelle</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    
+</body>
+
+</html>

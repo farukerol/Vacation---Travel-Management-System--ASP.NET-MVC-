@@ -1,0 +1,43 @@
+﻿@using MVCVacationManagement.Models.Entity
+
+@model List<TBLTURREZERVASYON>
+@{
+    ViewBag.Title = "ListTourCustomers";
+    Layout = "~/Views/Shared/_TourManagerLayout.cshtml";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tur Adı</th>
+            <th>Kalkış Yeri</th>
+            <th>Süre</th>
+            <th>Ücret</th>
+            <th>Tarih</th>
+            <th>Müşteri Adı</th>
+            <th>Müşteri Soyadı</th>
+            <th>Müşteri Telefon Numarası</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TBLTUR.tur_basligi</td>
+                <td>@item.TBLTUR.kalkis_yeri</td>
+                <td>@item.TBLTUR.sure</td>
+                <td>@item.TBLTUR.ucret</td>
+                <td>@Convert.ToDateTime(item.TBLTUR.tarih).ToString("dd/MM/yyyy")</td>
+                <td>@item.TBLMUSTERI1.ad</td>
+                <td>@item.TBLMUSTERI1.soyad</td>
+                <td>@item.TBLMUSTERI1.telefon_numarasi</td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+</body>
+
+</html>
